@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background: color-mix(in oklch, var(--accent) 38%, transparent);
+  color: var(--foreground);
+}
+
 :root {
   --background: oklch(0.982 0.006 240);
   --surface: oklch(0.965 0.01 240);
@@ -15,17 +26,18 @@
 }
 
 [data-theme="dark"] {
-  --background: oklch(0.18 0.025 250);
-  --surface: oklch(0.22 0.025 250);
-  --surface-soft: oklch(0.26 0.02 250);
-  --foreground: oklch(0.93 0.012 250);
-  --foreground-soft: oklch(0.84 0.015 250);
-  --muted: oklch(0.74 0.015 250);
-  --line: oklch(0.35 0.02 250);
-  --line-strong: oklch(0.47 0.03 250);
-  --accent: oklch(0.72 0.12 250);
-  --accent-alt: oklch(0.78 0.1 168);
-  --accent-warm: oklch(0.8 0.11 70);
+  /* Terminal / brutalist stack (Akash-style): near-black + electric lime */
+  --background: oklch(0.12 0.02 260);
+  --surface: oklch(0.16 0.018 260);
+  --surface-soft: oklch(0.2 0.016 260);
+  --foreground: oklch(0.97 0.008 260);
+  --foreground-soft: oklch(0.82 0.012 260);
+  --muted: oklch(0.55 0.02 260);
+  --line: oklch(0.32 0.02 260);
+  --line-strong: oklch(0.44 0.025 260);
+  --accent: oklch(0.9 0.24 125);
+  --accent-alt: oklch(0.72 0.12 220);
+  --accent-warm: oklch(0.78 0.14 70);
 }
 
 @theme inline {
@@ -63,6 +75,27 @@ a {
   overflow: clip;
 }
 
+.site-shell--terminal .background-grain {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--line) 22%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--line) 22%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center top;
+  opacity: 1;
+}
+
+.site-shell--terminal .background-grain::after {
+  display: none;
+}
+
+[data-theme="light"] .site-shell--terminal .background-grain {
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--line) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--line) 35%, transparent) 1px, transparent 1px);
+  opacity: 0.65;
+}
+
 .background-grain {
   position: absolute;
   inset: -10rem;
@@ -80,6 +113,86 @@ a {
   border-radius: 2rem;
   margin: 1.75rem;
   opacity: 0.3;
+}
+
+.terminal-protocol {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.terminal-hero-name {
+  font-size: clamp(3rem, 11vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.terminal-impact {
+  color: var(--accent);
+  font-size: clamp(2rem, 7vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.code-brace-line {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklch, var(--accent) 85%, var(--foreground));
+}
+
+.code-section-body {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-left: 2px solid color-mix(in oklch, var(--accent) 45%, var(--line));
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .code-section-body {
+    padding-left: 1.35rem;
+  }
+}
+
+.site-shell--terminal .project-card {
+  border-radius: 0;
+}
+
+.site-shell--terminal .stack-showcase {
+  border-radius: 0;
+}
+
+.site-shell--terminal .stack-tile {
+  border-radius: 0;
+}
+
+.portrait-tilt-scene {
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.portrait-tilt-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-tilt-inner {
+    transition: none;
+    will-change: auto;
+  }
 }
 
 .brand-mark {
@@ -230,6 +343,29 @@ a {
   border-color: color-mix(in oklch, var(--accent) 30%, var(--line-strong));
 }
 
+.social-orbit {
+  display: inline-grid;
+  height: 3.35rem;
+  width: 3.35rem;
+  place-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--surface-soft) 88%, var(--accent) 12%);
+  color: var(--foreground-soft);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.social-orbit:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--accent) 42%, var(--line));
+  background: color-mix(in oklch, var(--accent) 22%, var(--surface));
+  color: var(--foreground);
+}
+
 .stack-showcase {
   border: 1px solid var(--line);
   border-radius: 1.35rem;
@@ -300,10 +436,6 @@ a {
 
 .motion-rise {
   animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 [id] {

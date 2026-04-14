@@ -13,6 +13,11 @@ export type ProjectItem = {
   period: string;
   bullets: string[];
   tech: string[];
+  /** Public source or product link */
+  repoUrl?: string;
+  /** Path under `/public` or absolute URL to a proposal or write-up (PDF, etc.) */
+  proposalUrl?: string;
+  proposalLabel?: string;
 };
 
 export type StackItem = {
@@ -22,6 +27,43 @@ export type StackItem = {
   tone: "accent" | "emerald" | "warm";
 };
 
+export type TerminalCopy = {
+  aboutProtocol: string;
+  aboutImpactLead: string;
+  aboutImpactWord: string;
+  statusLine: string;
+  systemLogLine: string;
+  techStackEyebrow: string;
+  techStackTitle: string;
+  techStackSub: string;
+  operationalRegistry: string;
+  techIntro: string;
+  contactChapter: string;
+  contactSubtitle: string;
+};
+
+export type LeadershipItem = {
+  organization: string;
+  role: string;
+  period: string;
+  /** e.g. city/state or "Virtual" */
+  location?: string;
+  bullets: string[];
+};
+
+export type NewsItem = {
+  title: string;
+  source: string;
+  date: string;
+  summary: string;
+  url: string;
+  /** Accessible label for the outbound link */
+  linkLabel: string;
+  /** Path under `/public` for the card image */
+  imageSrc: string;
+  imageAlt: string;
+};
+
 export type ProfileData = {
   name: string;
   headline: string;
@@ -29,6 +71,18 @@ export type ProfileData = {
   location: string;
   intro: string;
   availability: string;
+  /** Short line for the hero status pill (pulse + text). */
+  heroStatusLabel: string;
+  /** Right-aligned kicker beside the projects section title. */
+  projectsTagline: string;
+  /** Large faint letters in the contact block (e.g. initials). */
+  contactWatermark: string;
+  /** Friendly opener (e.g. emoji hello). */
+  heroGreeting: string;
+  /** Social-style tags (e.g. #open_to_work). */
+  hashTags: string[];
+  /** Meta line for footer (stack / editor shout-out). */
+  footerBuildLine: string;
   focusAreas: string[];
   email: string;
   phone: string;
@@ -38,6 +92,8 @@ export type ProfileData = {
   heroCtaLabel: string;
   projectsCtaLabel: string;
   photoPlaceholderLabel: string;
+  /** Path under `/public` for the hero portrait (omit to show placeholder). */
+  portraitSrc?: string;
   education: string[];
   skills: {
     languages: string[];
@@ -47,7 +103,12 @@ export type ProfileData = {
   stackShowcase: StackItem[];
   experience: ExperienceItem[];
   projects: ProjectItem[];
-  leadership: string[];
+  news: NewsItem[];
+  leadership: LeadershipItem[];
+  /** Short labels for other campus / program involvement */
+  leadershipOther: string[];
+  /** Opsora-style terminal / protocol copy blocks */
+  terminal: TerminalCopy;
 };
 
 export const profile: ProfileData = {
@@ -57,26 +118,33 @@ export const profile: ProfileData = {
     "Honors Computer Science, Mathematics, and Data Science student at UNL.",
   location: "Lincoln, Nebraska",
   intro:
-    "I build full-stack products that are technically rigorous and easy to use. My strongest work blends backend performance thinking with clean frontend execution.",
-  availability: "Seeking Summer 2027 software engineering internship opportunities.",
-  focusAreas: ["Backend Systems", "API Design", "Cloud Applications", "Performance"],
+    "Full Stack Builder. Lifelong learner and problem solver. Obssesed with all things tech.",
+  availability: "Open for Summer 2026/Fall 2026 SWE Internships.",
+  heroStatusLabel: "Open for Summer & Fall 2026 internships",
+  projectsTagline: "Shipped work, honest tradeoffs, and outcomes you can measure.",
+  contactWatermark: "YH",
+  heroGreeting: "Hello 👋",
+  hashTags: ["#open_to_internships", "#full_stack", "#lincoln_NE", "#unl"],
+  footerBuildLine: "Next.js · Tailwind · Geist Mono",
+  focusAreas: ["Full Stack", "Data Analytics", "API Integration", "AI/ML"],
   email: "yhailu006@gmail.com",
   phone: "402-905-5385",
   linkedin: "https://www.linkedin.com/in/yohanneshailu/",
-  github: "https://github.com/yh4ilu",
+  github: "https://github.com/Nihyli",
   resumePath: "/resume.pdf",
   heroCtaLabel: "Download Resume",
   projectsCtaLabel: "Explore Projects",
-  photoPlaceholderLabel: "Your portrait goes here",
+  photoPlaceholderLabel: "headshot",
+  portraitSrc: "/portrait.png",
   education: [
     "University of Nebraska-Lincoln - BS Honors Computer Science, BS Honors Math, BS Honors Data Science (May 2028)",
     "GPA: 3.95/4.00",
-    "Relevant coursework: Data Structures and Algorithms, Software Engineering, Data Analysis, Computer Systems",
+    "Relevant coursework: Data Structures and Algorithms, Software Engineering, Data Analysis, Computer Systems, Computer Science 1 and 2"
   ],
   skills: {
-    languages: ["Python", "Java", "JavaScript", "TypeScript", "C#", "C++"],
-    frameworks: ["React", "Next.js", "AWS Lambda", "DynamoDB", "MUI"],
-    tools: ["Git", "VS Code", "Agile Methodology", "Microsoft Suite"],
+    languages: ["Python", "Java", "JavaScript", "TypeScript", "C#", "C++ (In progress)"],
+    frameworks: ["React", "Next.js", "AWS Lambda", "AWS Microservices"],
+    tools: [],
   },
   stackShowcase: [
     {
@@ -96,12 +164,6 @@ export const profile: ProfileData = {
       detail: "Frontend behavior and product interaction logic.",
       icon: "javascript",
       tone: "accent",
-    },
-    {
-      name: "TypeScript",
-      detail: "Typed UI and API development for safer changes.",
-      icon: "typescript",
-      tone: "warm",
     },
     {
       name: "C#",
@@ -133,44 +195,19 @@ export const profile: ProfileData = {
       icon: "lambda",
       tone: "accent",
     },
-    {
-      name: "DynamoDB",
-      detail: "Fast key-value access patterns and schema design.",
-      icon: "dynamodb",
-      tone: "emerald",
-    },
-    {
-      name: "Material UI (MUI)",
-      detail: "Production UI component systems and theming.",
-      icon: "mui",
-      tone: "warm",
-    },
-    {
-      name: "Git",
-      detail: "Version control workflows and collaboration hygiene.",
-      icon: "git",
-      tone: "accent",
-    },
-    {
-      name: "Visual Studio Code",
-      detail: "Daily development tooling and debugging workflows.",
-      icon: "vscode",
-      tone: "emerald",
-    },
-    {
-      name: "Agile Methodology",
-      detail: "Iterative delivery, feedback loops, and sprint planning.",
-      icon: "agile",
-      tone: "warm",
-    },
-    {
-      name: "Microsoft Suite",
-      detail: "Documentation, communication, and project reporting.",
-      icon: "microsoft",
-      tone: "accent",
-    },
   ],
   experience: [
+    {
+      organization: "Lockheed Martin",
+      role: "Incoming Software Engineering Intern",
+      period: "Summer/Fall 2026",
+      location: "Omaha, Nebraska",
+      impact: "Preparing for mission-focused engineering work.",
+      bullets: [
+        "Preparing for software engineering work on mission-focused projects.",
+        "Currently in process of obtaining TS clearance.",
+      ],
+    },
     {
       organization: "University of Nebraska-Lincoln",
       role: "Technology Support Intern",
@@ -191,19 +228,8 @@ export const profile: ProfileData = {
       impact: "Delivered production features for a platform at national scale.",
       bullets: [
         "Built features for a United States Air Force recruitment platform with over 1M app downloads.",
-        "Created DynamoDB lookup queries that improved data retrieval speed by 400x versus scans.",
+        "Created optimized database lookup queries that improved data retrieval speed by 400x versus scans.",
         "Developed and fixed production website components using React, TypeScript, and AWS Lambda.",
-      ],
-    },
-    {
-      organization: "Lockheed Martin",
-      role: "Incoming Software Engineering Intern",
-      period: "Summer/Fall 2026",
-      location: "Omaha, Nebraska",
-      impact: "Preparing for mission-focused engineering work.",
-      bullets: [
-        "Preparing for software engineering work on mission-focused projects.",
-        "Currently in process of obtaining TS clearance.",
       ],
     },
     {
@@ -213,21 +239,62 @@ export const profile: ProfileData = {
       location: "Remote",
       impact: "Built and shipped complete web products in rapid cycles.",
       bullets: [
-        "Built three web applications with Next.js, Firebase, and MUI.",
+        "Built three web applications with Next.js and Firebase.",
         "Integrated LLM APIs to parse website data and return structured responses.",
       ],
     },
   ],
   projects: [
     {
-      name: "VEX U Robotics",
-      role: "Programmer",
-      period: "Aug 2024 - May 2025",
+      name: "Kampus",
+      role: "Hackathon Team Lead",
+      period: "March 2026",
       bullets: [
-        "Improved latency and synchronization by 15% using C++ and the VEX V5 API.",
-        "Created daily technical reports to improve handoff and troubleshooting speed.",
+        "Full-stack UNL student platform that unifies Canvas, MyRed, NvolveU, and Google Calendar in one dashboard.",
+        "AI-assisted scheduling and wellness insights with OpenAI GPT-4o, including overlap detection and focus-time blocks.",
+        "Chrome extension (Manifest V3) syncs portal data into a Next.js app backed by PostgreSQL and Prisma.",
       ],
-      tech: ["C++", "VEX V5 API"],
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "OpenAI",
+        "Socket.io",
+        "Chrome Extension",
+      ],
+      repoUrl: "https://github.com/pujara-narayana/Kampus",
+    },
+    {
+      name: "TicketExchange",
+      role: "Creator",
+      period: "2025",
+      bullets: [
+        "College ticket marketplace for verified students, with Stripe-backed payments and in-app negotiation chat.",
+        "Turborepo spanning Next.js web, Expo mobile, and a NestJS API with PostgreSQL, Redis, BullMQ, and Socket.IO.",
+      ],
+      tech: [
+        "Next.js",
+        "NestJS",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "Stripe",
+        "Socket.IO",
+        "Expo",
+      ],
+      repoUrl: "https://github.com/Nihyli/TicketExchange",
+    },
+    {
+      name: "Recyclable.io",
+      role: "Hackathon Team Lead",
+      period: "March 2025",
+      bullets: [
+        "Webcam-based game that classifies recyclables with TensorFlow.js and a Teachable Machine image model.",
+        "Realtime global leaderboard using Firebase Firestore; static frontend deployed on Netlify.",
+      ],
+      tech: ["TensorFlow.js", "Firebase", "JavaScript", "HTML", "CSS"],
+      repoUrl: "https://github.com/Nihyli/Recyclable.io",
     },
     {
       name: "NASA SUITS",
@@ -238,11 +305,75 @@ export const profile: ProfileData = {
         "Iterated designs through user testing to improve usability in high-stakes scenarios.",
       ],
       tech: ["AR Interface Design", "Prototyping", "User Testing"],
+      proposalUrl: "/nasa-suits-proposal-unl-vantage.pdf",
+      proposalLabel: "View proposal: UNL VANTAGE (PDF)",
+    },
+  ],
+  news: [
+    {
+      title: "Polsley, students represent School of Computing at annual NACME Conference and Gala",
+      source: "University of Nebraska–Lincoln Newsroom",
+      date: "November 2024",
+      summary:
+        "Attended the 2024 NACME Conference and Gala in Houston with School of Computing faculty and fellow scholars, representing UNL at the flagship event for community, networking, and career development.",
+      url: "https://newsroom.unl.edu/announce/cse/18122/98366",
+      linkLabel: "Read UNL announcement",
+      imageSrc: "/news/nacme-unl.jpg",
+      imageAlt:
+        "Oliver Triana Gutierrez, Anok Timothy, Yohannes Hailu, Leopoldo Hernandez, and Seth Polsley at the NACME Conference in Houston.",
+    },
+    {
+      title: "Instagram highlight",
+      source: "Instagram",
+      date: "2025",
+      summary:
+        "Featured post with photos and updates from recent work and campus life.",
+      url: "https://www.instagram.com/p/DLi5b1WOg7H/",
+      linkLabel: "View on Instagram",
+      imageSrc: "/news/instagram-post.jpg",
+      imageAlt: "Photo from the featured Instagram post.",
     },
   ],
   leadership: [
-    "National Society of Black Engineers (NSBE) - Senator",
-    "Management Leadership for Tomorrow (MLT) - Career Preparation Fellow",
-    "NACME Scholar, ColorStack Fellow, Afrikan Peoples Union, African Student Association",
+    {
+      organization: "National Society of Black Engineers (NSBE)",
+      role: "Senator",
+      period: "Aug 2025 – Present",
+      location: "Lincoln, Nebraska",
+      bullets: [
+        "Represent 50+ member interests in chapter meetings and contribute to decisions on chapter initiatives, events, and policies.",
+      ],
+    },
+    {
+      organization: "Management Leadership for Tomorrow (MLT)",
+      role: "Career Preparation Fellow",
+      period: "Jan 2025 – Present",
+      location: "Virtual",
+      bullets: [
+        "Accepted into a selective 18-month professional development program that accelerates the career growth of emerging leaders through structured coaching, mentorship, and targeted skill-building.",
+      ],
+    },
   ],
+  leadershipOther: [
+    "Honors Program",
+    "NACME Scholar",
+    "ColorStack Fellow",
+    "Afrikan Peoples Union",
+    "African Student Association",
+  ],
+  terminal: {
+    aboutProtocol: "Protocol // Systems & product delivery",
+    aboutImpactLead: "I build software that",
+    aboutImpactWord: "EARNS TRUST.",
+    statusLine: "Current status: Operational // Lincoln, NE",
+    systemLogLine: "Access_System_Logs // V.02",
+    techStackEyebrow: "Tech stack",
+    techStackTitle: "Operational Skills",
+    techStackSub: "Development // Lincoln",
+    operationalRegistry: "Operational Registry // 01",
+    techIntro:
+      "Languages, frameworks, and cloud skills that show up repeatedly across coursework, internships, and side projects.",
+    contactChapter: "Final chapter: contact",
+    contactSubtitle: "Honors CS · Math · Data Science @ UNL",
+  },
 };

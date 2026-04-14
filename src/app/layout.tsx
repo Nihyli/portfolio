@@ -37,7 +37,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem('portfolio-theme');var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var theme=(stored==='dark'||stored==='light')?stored:(prefersDark?'dark':'light');document.documentElement.dataset.theme=theme;}catch(e){document.documentElement.dataset.theme='light';}})();`,
+            __html: `(function(){try{var stored=localStorage.getItem('portfolio-theme');var theme=(stored==='dark'||stored==='light')?stored:'dark';document.documentElement.dataset.theme=theme;}catch(e){document.documentElement.dataset.theme='dark';}})();`,
           }}
         />
       </head>

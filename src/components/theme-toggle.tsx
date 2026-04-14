@@ -13,9 +13,9 @@ function applyTheme(theme: Theme) {
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") {
-      return "light";
+      return "dark";
     }
-    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    return document.documentElement.dataset.theme === "light" ? "light" : "dark";
   });
 
   const toggleTheme = () => {
