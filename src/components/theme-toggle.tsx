@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 
 type Theme = "light" | "dark";
 
@@ -13,9 +14,9 @@ function applyTheme(theme: Theme) {
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") {
-      return "dark";
+      return "light";
     }
-    return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
   });
 
   const toggleTheme = () => {
@@ -32,7 +33,11 @@ export function ThemeToggle() {
       className="theme-toggle"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme === "dark" ? (
+        <HiOutlineSun aria-hidden className="theme-toggle__icon" />
+      ) : (
+        <HiOutlineMoon aria-hidden className="theme-toggle__icon" />
+      )}
     </button>
   );
 }

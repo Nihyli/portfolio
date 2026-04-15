@@ -297,16 +297,21 @@ a {
 }
 
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--line);
   border-radius: 9999px;
   background: color-mix(in oklch, var(--surface) 86%, var(--accent) 14%);
   color: var(--foreground);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 0.45rem 0.82rem;
-  text-transform: uppercase;
+  padding: 0.45rem;
+  line-height: 0;
   transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.theme-toggle__icon {
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .theme-toggle:hover {
