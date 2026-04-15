@@ -342,6 +342,8 @@ export const profile: ProfileData = {
       location: "Lincoln, Nebraska",
       bullets: [
         "Represent 50+ member interests in chapter meetings and contribute to decisions on chapter initiatives, events, and policies.",
+        "Served as a liaison between chapter leadership and NSBE regional/national leadership to communicate updates and policies.",
+        "Helped implement policies and initiatives from NSBE leadership at the chapter level.",
       ],
     },
     {
@@ -351,6 +353,8 @@ export const profile: ProfileData = {
       location: "Virtual",
       bullets: [
         "Accepted into a selective 18-month professional development program that accelerates the career growth of emerging leaders through structured coaching, mentorship, and targeted skill-building.",
+        "Engage with leading partner organizations (e.g., LinkedIn, Bloomberg, and Deloitte) to gain industry exposure and insight into tech-talent pathways.",
+        "Applied feedback from mentors and coaches to continuously improve technical and interpersonal skills.",
       ],
     },
   ],

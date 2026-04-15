@@ -180,6 +180,33 @@ a {
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Let drag gestures control tilt instead of scrolling the page (touch / stylus). */
+@media (pointer: coarse) {
+  .portrait-tilt-scene {
+    touch-action: none;
+  }
+}
+
+.portrait-tilt-hint__fine {
+  display: flex;
+}
+
+.portrait-tilt-hint__coarse {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .portrait-tilt-hint__fine {
+    display: none;
+  }
+
+  .portrait-tilt-hint__coarse {
+    display: flex;
+  }
 }
 
 .portrait-tilt-inner {

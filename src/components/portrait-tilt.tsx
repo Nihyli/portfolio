@@ -33,7 +33,7 @@ export function PortraitTilt({ src, alt, sizes, priority }: PortraitTiltProps) {
   const [showTiltHint, setShowTiltHint] = useState(true);
   const hintDismissed = useRef(false);
 
-  const onPointerMove = useCallback(
+  const updateTiltFromPointer = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
       if (reducedMotion) return;
       if (!hintDismissed.current) {
@@ -70,7 +70,8 @@ export function PortraitTilt({ src, alt, sizes, priority }: PortraitTiltProps) {
       />
       <div
         className="portrait-tilt-scene"
-        onPointerMove={onPointerMove}
+        onPointerDown={updateTiltFromPointer}
+        onPointerMove={updateTiltFromPointer}
         onPointerLeave={resetTilt}
         onPointerCancel={resetTilt}
       >
@@ -92,14 +93,24 @@ export function PortraitTilt({ src, alt, sizes, priority }: PortraitTiltProps) {
           />
         </div>
         {!reducedMotion ? (
-          <p
-            className={`pointer-events-none absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded border border-[--line] bg-[color-mix(in_oklch,var(--background)_82%,var(--surface))] px-2.5 py-1.5 font-[family-name:var(--font-geist-mono)] text-[9px] font-semibold uppercase tracking-[0.18em] text-[--foreground-soft] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-opacity duration-500 ease-out ${
-              showTiltHint ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <FiMove className="h-3.5 w-3.5 shrink-0 text-[--accent]" aria-hidden />
-            hover for motion
-          </p>
+          <>
+            <p
+              className={`portrait-tilt-hint portrait-tilt-hint__fine pointer-events-none absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded border border-[--line] bg-[color-mix(in_oklch,var(--background)_82%,var(--surface))] px-2.5 py-1.5 font-[family-name:var(--font-geist-mono)] text-[9px] font-semibold uppercase tracking-[0.18em] text-[--foreground-soft] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-opacity duration-500 ease-out ${
+                showTiltHint ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <FiMove className="h-3.5 w-3.5 shrink-0 text-[--accent]" aria-hidden />
+              hover for motion
+            </p>
+            <p
+              className={`portrait-tilt-hint portrait-tilt-hint__coarse pointer-events-none absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded border border-[--line] bg-[color-mix(in_oklch,var(--background)_82%,var(--surface))] px-2.5 py-1.5 font-[family-name:var(--font-geist-mono)] text-[9px] font-semibold uppercase tracking-[0.18em] text-[--foreground-soft] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-opacity duration-500 ease-out ${
+                showTiltHint ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <FiMove className="h-3.5 w-3.5 shrink-0 text-[--accent]" aria-hidden />
+              drag for motion
+            </p>
+          </>
         ) : null}
       </div>
     </div>
