@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist_Mono, Manrope } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const displayFont = Bricolage_Grotesque({
@@ -20,7 +21,11 @@ const monoFont = Geist_Mono({
 export const metadata: Metadata = {
   title: "Yohannes Hailu | Portfolio",
   description:
-    "Portfolio website for Yohannes Hailu - software engineering experience, projects, and leadership.",
+    "SAP iXp Intern in AI Solutions Advisory. Honors Computer Science, Mathematics, and Data Science at UNL — internships, projects, and leadership.",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png", sizes: "1024x1024" }],
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -34,14 +39,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} h-full antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem('portfolio-theme');var theme=(stored==='dark'||stored==='light')?stored:'light';document.documentElement.dataset.theme=theme;}catch(e){document.documentElement.dataset.theme='light';}})();`,
-          }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var stored=localStorage.getItem('portfolio-theme');var theme=(stored==='dark'||stored==='light')?stored:'light';document.documentElement.dataset.theme=theme;}catch(e){document.documentElement.dataset.theme='light';}})();`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }

@@ -64,6 +64,12 @@ export type NewsItem = {
   imageAlt: string;
 };
 
+export type CertificationItem = {
+  name: string;
+  issuer: string;
+  date: string;
+};
+
 export type ProfileData = {
   name: string;
   headline: string;
@@ -104,6 +110,7 @@ export type ProfileData = {
   experience: ExperienceItem[];
   projects: ProjectItem[];
   news: NewsItem[];
+  certifications: CertificationItem[];
   leadership: LeadershipItem[];
   /** Short labels for other campus / program involvement */
   leadershipOther: string[];
@@ -118,15 +125,15 @@ export const profile: ProfileData = {
     "Honors Computer Science, Mathematics, and Data Science student at UNL.",
   location: "Lincoln, Nebraska",
   intro:
-    "Full Stack Builder. Lifelong learner and problem solver. Obssesed with all things tech.",
-  availability: "Open for Summer 2026/Fall 2026 SWE Internships.",
-  heroStatusLabel: "Open for Summer & Fall 2026 internships",
+    "Full Stack Builder. Lifelong learner and problem solver. Obsessed with all things tech.",
+  availability: "SAP iXp Intern, AI Solutions Advisory.",
+  heroStatusLabel: "SAP iXp Intern · AI Solutions Advisory",
   projectsTagline: "Shipped work, honest tradeoffs, and outcomes you can measure.",
   contactWatermark: "YH",
   heroGreeting: "Hello 👋",
-  hashTags: ["#open_to_internships", "#full_stack", "#lincoln_NE", "#unl"],
+  hashTags: ["#open_to_internships", "#full_stack", "#ai_solutions", "#lincoln_NE", "#unl"],
   footerBuildLine: "Next.js · Tailwind · Geist Mono",
-  focusAreas: ["Full Stack", "Data Analytics", "API Integration", "AI/ML"],
+  focusAreas: ["Full Stack", "AI Solutions", "Data Analytics", "API Integration"],
   email: "yhailu006@gmail.com",
   phone: "402-905-5385",
   linkedin: "https://www.linkedin.com/in/yohanneshailu/",
@@ -139,12 +146,25 @@ export const profile: ProfileData = {
   education: [
     "University of Nebraska-Lincoln - BS Honors Computer Science, BS Honors Math, BS Honors Data Science (May 2028)",
     "GPA: 3.95/4.00",
-    "Relevant coursework: Data Structures and Algorithms, Software Engineering, Data Analysis, Computer Systems, Computer Science 1 and 2"
+    "Relevant coursework: Data Structures and Algorithms, Software Engineering, Data Analysis, Computer Systems, Machine Learning, Object-Oriented Programming"
   ],
   skills: {
-    languages: ["Python", "Java", "JavaScript", "TypeScript", "C#", "C++ (In progress)"],
-    frameworks: ["React", "Next.js", "AWS Lambda", "AWS Microservices"],
-    tools: [],
+    languages: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "C#", "C++"],
+    frameworks: ["React", "Next.js", "Spring Boot", "FastAPI", "Node.js", "MUI", "AWS Lambda"],
+    tools: [
+      "DynamoDB",
+      "MongoDB",
+      "Firebase",
+      "PostgreSQL",
+      "Prisma",
+      "Docker",
+      "CI/CD",
+      "n8n",
+      "Claude Code",
+      "Prompt Engineering",
+      "REST APIs",
+      "Git",
+    ],
   },
   stackShowcase: [
     {
@@ -173,9 +193,15 @@ export const profile: ProfileData = {
     },
     {
       name: "C++",
-      detail: "Performance-sensitive coding and robotics systems.",
+      detail: "Performance-sensitive coding and robotics control systems.",
       icon: "cplusplus",
       tone: "accent",
+    },
+    {
+      name: "SQL",
+      detail: "Query design, data modeling, and production data access.",
+      icon: "sql",
+      tone: "emerald",
     },
     {
       name: "React",
@@ -190,6 +216,18 @@ export const profile: ProfileData = {
       tone: "warm",
     },
     {
+      name: "Spring Boot",
+      detail: "Java backend services and production APIs.",
+      icon: "spring",
+      tone: "emerald",
+    },
+    {
+      name: "FastAPI",
+      detail: "Python services, testing, and inspection workflows.",
+      icon: "fastapi",
+      tone: "warm",
+    },
+    {
       name: "AWS Lambda",
       detail: "Serverless functions and cloud event workflows.",
       icon: "lambda",
@@ -198,26 +236,26 @@ export const profile: ProfileData = {
   ],
   experience: [
     {
-      organization: "Lockheed Martin",
-      role: "Incoming Software Engineering Intern",
-      period: "Summer/Fall 2026",
-      location: "Omaha, Nebraska",
-      impact: "Preparing for mission-focused engineering work.",
+      organization: "SAP",
+      role: "SAP iXp Intern, AI Solutions Advisory",
+      period: "Sep 2026 - Present",
+      location: "Newtown Square, Pennsylvania",
+      impact: "Prototype and evaluate AI solutions with technical and business stakeholders.",
       bullets: [
-        "Preparing for software engineering work on mission-focused projects.",
-        "Currently in process of obtaining TS clearance.",
+        "Support the development and evaluation of AI solutions for real-world business challenges.",
+        "Collaborate with technical and business teams to identify AI use cases, develop prototypes, analyze results, and present recommendations to stakeholders.",
       ],
     },
     {
-      organization: "University of Nebraska-Lincoln",
-      role: "Technology Support Intern",
-      period: "Apr 2025 - Present",
-      location: "Lincoln, Nebraska",
-      impact: "Improved reliability across multi-department IT operations.",
+      organization: "Lockheed Martin",
+      role: "Software Engineering Intern",
+      period: "May 2026 - Aug 2026",
+      location: "Omaha, Nebraska",
+      impact: "Intern Software Lead on a classified program; 12+ production features used daily by 100+ technical users.",
       bullets: [
-        "Maintain IT systems and troubleshoot software, operating systems, hardware, and network issues.",
-        "Helped migrate school email domains and resolved software access issues across three departments.",
-        "Support students and staff through tickets, phone, email, and in-person troubleshooting.",
+        "Hold an active Top Secret clearance; developed and maintained production full-stack software for a classified U.S. government program using React, TypeScript, Spring Boot, and MongoDB.",
+        "Designed, implemented, tested, and deployed 12+ production features used daily by more than 100 technical users, translating ambiguous requirements into reliable software.",
+        "Served as Intern Software Lead, coordinating a 4-intern workstream and reviewing 30+ pull requests while collaborating with engineers on implementation decisions and code quality.",
       ],
     },
     {
@@ -227,9 +265,9 @@ export const profile: ProfileData = {
       location: "Omaha, Nebraska",
       impact: "Delivered production features for a platform at national scale.",
       bullets: [
-        "Built features for a United States Air Force recruitment platform with over 1M app downloads.",
-        "Created optimized database lookup queries that improved data retrieval speed by 400x versus scans.",
-        "Developed and fixed production website components using React, TypeScript, and AWS Lambda.",
+        "Developed and tested 15+ React/TypeScript features backed by AWS Lambda for a U.S. Air Force recruitment application.",
+        "Improved data-retrieval performance by 400x by designing and optimizing DynamoDB queries.",
+        "Built and maintained functionality for a recruiting platform with 1M+ downloads across mobile app stores.",
       ],
     },
     {
@@ -239,12 +277,35 @@ export const profile: ProfileData = {
       location: "Remote",
       impact: "Built and shipped complete web products in rapid cycles.",
       bullets: [
-        "Built three web applications with Next.js and Firebase.",
-        "Integrated LLM APIs to parse website data and return structured responses.",
+        "Built 3 full-stack web apps in 9 weeks using Next.js, Firebase, and MUI.",
+        "Integrated LLM APIs to parse web data and return structured responses across 3 project codebases.",
+      ],
+    },
+    {
+      organization: "University of Nebraska-Lincoln",
+      role: "Technology Support Intern",
+      period: "Apr 2025 - Present",
+      location: "Lincoln, Nebraska",
+      impact: "Improved reliability across multi-department IT operations.",
+      bullets: [
+        "Resolved 20+ weekly support requests, independently troubleshooting software, operating systems, hardware, and network connectivity.",
+        "Supported 500+ students and faculty through email, phone, ticketing, and in-person channels.",
+        "Supported email, data, and account migrations across five university departments and resolved software access issues.",
       ],
     },
   ],
   projects: [
+    {
+      name: "Conditia",
+      role: "Full-Stack Developer",
+      period: "Jun 2026 - Jul 2026",
+      bullets: [
+        "Built Python/FastAPI microservices and a React/Vite UI with 80%+ unit-test coverage, routing low-confidence model output to human review.",
+        "Modeled data with async SQLAlchemy and PostgreSQL and wired a CI pipeline that runs automated tests and Alembic migrations on every change.",
+        "Added a guided image/video capture flow and an analysis worker that atomically claims and processes each inspection.",
+      ],
+      tech: ["Python", "FastAPI", "React", "Vite", "PostgreSQL", "SQLAlchemy", "Alembic", "CI"],
+    },
     {
       name: "Kampus",
       role: "Hackathon Team Lead",
@@ -301,12 +362,22 @@ export const profile: ProfileData = {
       role: "Programmer",
       period: "Aug 2024 - May 2025",
       bullets: [
-        "Built augmented reality interfaces for telemetry in simulated mission environments.",
-        "Iterated designs through user testing to improve usability in high-stakes scenarios.",
+        "Developed augmented reality interfaces to visualize telemetry data in simulated space environments, improving access to mission-critical information.",
+        "Iterated on interface design through user testing and feedback to improve performance in high-stakes simulated environments.",
       ],
       tech: ["AR Interface Design", "Prototyping", "User Testing"],
       proposalUrl: "/nasa-suits-proposal-unl-vantage.pdf",
       proposalLabel: "View proposal: UNL VANTAGE (PDF)",
+    },
+    {
+      name: "VEX U Robotics",
+      role: "Programmer",
+      period: "Aug 2024 - May 2025",
+      bullets: [
+        "Improved robot-control latency and synchronization by 15% using C++ algorithms and the VEX V5 API.",
+        "Wrote daily technical reports documenting system behavior, implementation changes, and troubleshooting findings for the project team.",
+      ],
+      tech: ["C++", "VEX V5 API"],
     },
   ],
   news: [
@@ -334,16 +405,37 @@ export const profile: ProfileData = {
       imageAlt: "Photo from the featured Instagram post.",
     },
   ],
+  certifications: [
+    {
+      name: "Dell Prompt Engineering Achievement Version 1.0",
+      issuer: "Dell Technologies",
+      date: "Aug 2026",
+    },
+    {
+      name: "IBM Data Analyst Professional Certificate (V3)",
+      issuer: "Coursera",
+      date: "Dec 2025",
+    },
+  ],
   leadership: [
+    {
+      organization: "African Student Association",
+      role: "Vice President",
+      period: "2026 – 2027",
+      location: "Lincoln, Nebraska",
+      bullets: [
+        "Serve as Vice President of the African Student Association for the 2026–2027 term.",
+      ],
+    },
     {
       organization: "National Society of Black Engineers (NSBE)",
       role: "Senator",
       period: "Aug 2025 – Present",
       location: "Lincoln, Nebraska",
       bullets: [
-        "Represent 50+ member interests in chapter meetings and contribute to decisions on chapter initiatives, events, and policies.",
+        "Represented 50+ members in chapter and national-level discussions, shaping initiatives, events, and policy decisions.",
+        "Collaborated with chapter leadership to plan 5+ events and drive member engagement across the chapter.",
         "Served as a liaison between chapter leadership and NSBE regional/national leadership to communicate updates and policies.",
-        "Helped implement policies and initiatives from NSBE leadership at the chapter level.",
       ],
     },
     {
@@ -353,6 +445,7 @@ export const profile: ProfileData = {
       location: "Virtual",
       bullets: [
         "Accepted into a selective 18-month professional development program that accelerates the career growth of emerging leaders through structured coaching, mentorship, and targeted skill-building.",
+        "Completed the Dell Technologies x MLT Prompt Engineering Cohort, focused on practical LLM prompting and applied AI concepts.",
         "Engage with leading partner organizations (e.g., LinkedIn, Bloomberg, and Deloitte) to gain industry exposure and insight into tech-talent pathways.",
         "Applied feedback from mentors and coaches to continuously improve technical and interpersonal skills.",
       ],
@@ -363,7 +456,6 @@ export const profile: ProfileData = {
     "NACME Scholar",
     "ColorStack Fellow",
     "Afrikan Peoples Union",
-    "African Student Association",
   ],
   terminal: {
     aboutProtocol: "Protocol // Systems & product delivery",

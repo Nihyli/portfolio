@@ -6,9 +6,11 @@ import type { IconType } from "react-icons";
 import {
   FaAws,
   FaCode,
+  FaDatabase,
   FaJava,
   FaJsSquare,
   FaLaptopCode,
+  FaLeaf,
   FaPython,
   FaReact,
 } from "react-icons/fa";
@@ -22,8 +24,11 @@ export default function Home() {
     typescript: FaCode,
     csharp: FaCode,
     cplusplus: FaCode,
+    sql: FaDatabase,
     react: FaReact,
     next: FaLaptopCode,
+    spring: FaLeaf,
+    fastapi: FaCode,
     lambda: FaAws,
   };
 
@@ -47,12 +52,9 @@ export default function Home() {
     { label: "Languages", sublabel: "Typed // systems", items: profile.skills.languages },
     { label: "Frameworks", sublabel: "Ship // web", items: profile.skills.frameworks },
     {
-      label: "Cloud & more",
-      sublabel: "Runtime // edge",
-      items:
-        profile.skills.tools.length > 0
-          ? profile.skills.tools
-          : ["AWS Lambda", "PostgreSQL", "Prisma", "REST APIs"],
+      label: "Cloud & data",
+      sublabel: "Runtime // storage",
+      items: profile.skills.tools,
     },
   ];
 
@@ -219,6 +221,36 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
+            </div>
+
+            <div
+              id="certifications"
+              className="mt-8 scroll-mt-28 border border-[--line] bg-[--surface] p-6 md:p-8"
+            >
+              <h3 className="font-[family-name:var(--font-bricolage)] text-2xl font-bold uppercase tracking-tight text-[--foreground]">
+                Certifications
+              </h3>
+              <p className="terminal-protocol mt-2">Credentials // completed</p>
+              <ul className="mt-8 space-y-6">
+                {profile.certifications.map((item) => (
+                  <li
+                    key={item.name}
+                    className="flex flex-wrap items-start justify-between gap-3 border-b border-[--line] pb-6 last:border-b-0 last:pb-0"
+                  >
+                    <div>
+                      <p className="font-[family-name:var(--font-bricolage)] text-base font-semibold text-[--foreground] md:text-lg">
+                        {item.name}
+                      </p>
+                      <p className="mt-1 font-[family-name:var(--font-geist-mono)] text-xs uppercase tracking-[0.14em] text-[--foreground-soft]">
+                        {item.issuer}
+                      </p>
+                    </div>
+                    <p className="font-[family-name:var(--font-geist-mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[--muted]">
+                      {item.date}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
 
 
