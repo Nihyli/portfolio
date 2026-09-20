@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   description:
     "SAP iXp Intern in AI Solutions Advisory. Honors Computer Science, Mathematics, and Data Science at UNL — internships, projects, and leadership.",
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png", sizes: "1024x1024" }],
-    apple: "/icon.png",
+    icon: [{ url: "/icon.png", type: "image/png", sizes: "150x150" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
 };
 
